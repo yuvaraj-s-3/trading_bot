@@ -1,22 +1,28 @@
 from bot.client import get_client
+from bot.orders import place_market_order, place_limit_order
+from bot.logger import setup_logger
+
 
 def main():
-    print("Trading bot starting...")
-
+    logger = setup_logger()
     client = get_client()
 
-    symbol = "BTCUSDT"
-    quantity = 0.001  # tiny test amount
+    print("=== Binance Spot Testnet Trading Bot ===")
+    symbol = input("Enter symbol (e.g., BTCUSDT): ").upper()
+    side = input("Enter side (BUY or SELL): ").upper()
+    order_type = input("Enter order type (MARKET or LIMIT): ").upper()
+    quantity = input("Enter quantity: ")
 
-    order = client.create_order(
-        symbol=symbol,
-        side="BUY",
-        type="MARKET",
-        quantity=quantity
-    )
+    if order_type == "MARKET":
+        place_market_order(client, symbol, side, quantity, logger)
 
-    print("ORDER PLACED SUCCESSFULLY")
-    print(order)
+    elif order_type == "LIMIT":
+        price = input("Enter price: ")
+        place_limit_order(client, symbol, side, quantity, price, logger)
+
+    else:
+        print("Invalid order type.")
+
 
 if __name__ == "__main__":
     main()

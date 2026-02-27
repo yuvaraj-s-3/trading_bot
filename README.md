@@ -1,68 +1,95 @@
-\# Trading Bot Assignment
+# Binance Spot Testnet Trading Bot  
+Yuvaraj
 
+This project is a simple command-line trading bot built using Python and the Binance Spot Testnet API.  
+It demonstrates API integration, order execution, structured logging, and modular project design.
 
+The bot allows users to place MARKET and LIMIT orders in a safe test environment (no real funds involved).
 
-\## Description
+---
 
-This project is a simple Python-based trading bot using the Binance API.
+## What This Project Demonstrates
 
-It demonstrates local development using Python, virtual environments,
+- Secure API authentication using environment variables
+- Market order execution (BUY / SELL)
+- Limit order execution (BUY / SELL)
+- Exception handling for API errors
+- Logging of trade activity
+- Clean and modular folder structure
+- Command-line interaction
 
-modular code structure, and GitHub version control.
+This implementation focuses on clarity, correctness, and maintainability rather than trading strategy complexity.
 
+---
 
+## Project Structure
 
-\## Features
+trading_bot/  
+│  
+├── bot/  
+│   ├── client.py        (API connection setup)  
+│   ├── orders.py        (Order execution logic)  
+│   ├── logger.py        (Logging configuration)  
+│  
+├── logs/                (Generated trade logs)  
+├── cli.py               (Application entry point)  
+├── requirements.txt  
+├── README.md  
 
-\- Binance API client initialization
+---
 
-\- Environment variable based API key loading
+## Setup
 
-\- CLI-based execution
+1. Clone the repository  
+   git clone <your-repo-link>  
+   cd trading_bot  
 
-\- Modular bot architecture
+2. Create and activate virtual environment  
+   python -m venv venv  
+   venv\Scripts\activate  
 
+3. Install dependencies  
+   pip install -r requirements.txt  
 
+4. Create a `.env` file in the root directory with your Binance Spot Testnet API credentials:
 
-\## Project Structure
+   BINANCE_API_KEY=your_testnet_key  
+   BINANCE_API_SECRET=your_testnet_secret  
 
-trading\_bot/
+API keys can be generated from:  
+https://testnet.binance.vision/
 
-├── bot/
+---
 
-│   ├── client.py
+## Running the Bot
 
-│   ├── orders.py
+python cli.py
 
-│   ├── validators.py
+You will be prompted to enter:
 
-│   ├── logging\_config.py
+- Trading pair (e.g., BTCUSDT)
+- Order side (BUY or SELL)
+- Order type (MARKET or LIMIT)
+- Quantity
+- Price (for LIMIT orders)
 
-├── cli.py
+---
 
-├── requirements.txt
+## Logging
 
-├── README.md
+All successful and failed trade attempts are recorded in:
 
+logs/trades.log
 
+This ensures traceability and basic operational monitoring.
 
-\## Setup Instructions
+---
 
-1\. Install Python 3.11+
+## Notes
 
-2\. Create virtual environment:
+- This project is built for demonstration and assessment purposes.
+- It operates only on Binance Spot Testnet.
+- No real funds are used.
+- No trading strategy logic is implemented — the focus is API integration and system structure.
 
-&nbsp;  python -m venv venv
-
-3\. Activate venv
-
-4\. Install dependencies:
-
-&nbsp;  pip install -r requirements.txt
-
-5\. Add API keys in `.env`
-
-6\. Run the bot:
-
-&nbsp;  python cli.py
-
+Yuvaraj
